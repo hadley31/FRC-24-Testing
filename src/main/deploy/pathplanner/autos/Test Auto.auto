@@ -1,0 +1,36 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.89,
+      "y": 5.0
+    },
+    "rotation": 180.0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "N1 to GP1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "a"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "GP1 to N2"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null
+}
