@@ -15,8 +15,8 @@ public class DriveCommands {
   public static DriveCommand fieldRelative(DriveCommandConfig config, DriverControls controls) {
     return DriveCommand.builder(config)
         .withLinearSpeedSuppliers(
-            controls::driveX,
-            controls::driveY)
+            controls::driveForward,
+            controls::driveLeft)
         .withAngularSpeedSupplier(controls::driveRotate)
         .withSpeedConstraints(Units.feetToMeters(9), Units.degreesToRadians(360))
         .usePercentSpeeds(true)
@@ -38,8 +38,8 @@ public class DriveCommands {
 
     return DriveCommand.builder(config)
         .withLinearSpeedSuppliers(
-            controls::driveX,
-            controls::driveY)
+            controls::driveForward,
+            controls::driveLeft)
         .withTargetAngleSupplier(angleSupplier, controller)
         .withSpeedConstraints(Units.feetToMeters(9), Units.degreesToRadians(1280))
         .usePercentSpeeds(true)

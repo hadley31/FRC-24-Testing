@@ -12,12 +12,12 @@ public class SingleUserXboxControls implements DriverControls {
   }
 
   @Override
-  public double driveX() {
+  public double driveForward() {
     return MathUtil.applyDeadband(-m_controller.getLeftY(), 0.1);
   }
 
   @Override
-  public double driveY() {
+  public double driveLeft() {
     return MathUtil.applyDeadband(-m_controller.getLeftX(), 0.1);
   }
 
