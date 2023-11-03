@@ -1,11 +1,31 @@
 {
+  "HALProvider": {
+    "Other Devices": {
+      "Talon FX (Pro)[21]": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon FX (Pro)[21]/Rotor Sensor": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/SmartDashboard/Arm Mechanism": "Mechanism2d",
       "/SmartDashboard/Auto Chooser": "String Chooser",
       "/SmartDashboard/Field": "Field2d"
     },
     "windows": {
+      "/SmartDashboard/Arm Mechanism": {
+        "window": {
+          "visible": true
+        }
+      },
       "/SmartDashboard/Auto Chooser": {
         "window": {
           "visible": true
@@ -44,11 +64,28 @@
   },
   "NetworkTables": {
     "transitory": {
+      "Arm": {
+        "FF": {
+          "open": true
+        },
+        "PID": {
+          "open": true
+        },
+        "open": true
+      },
       "Drive": {
         "[...]##v_/Drive/CurrentPose": {
           "open": true
         },
         "[...]##v_/Drive/CurrentStates": {
+          "open": true
+        },
+        "double[]##v_/Drive/TargetPose": {
+          "open": true
+        }
+      },
+      "PathPlanner": {
+        "double[]##v_/PathPlanner/targetPose": {
           "open": true
         },
         "open": true

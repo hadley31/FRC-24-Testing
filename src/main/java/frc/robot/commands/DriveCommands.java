@@ -12,6 +12,7 @@ import frc.lib.commands.drive.DriveCommandConfig;
 import frc.robot.oi.DriverControls;
 
 public class DriveCommands {
+
   public static DriveCommand fieldRelative(DriveCommandConfig config, DriverControls controls) {
     return DriveCommand.builder(config)
         .withLinearSpeedSuppliers(
@@ -21,6 +22,18 @@ public class DriveCommands {
         .withSpeedConstraints(Units.feetToMeters(9), Units.degreesToRadians(360))
         .usePercentSpeeds(true)
         .useFieldRelative(true)
+        .build();
+  }
+
+  public static DriveCommand robotRelative(DriveCommandConfig config, DriverControls controls) {
+    return DriveCommand.builder(config)
+        .withLinearSpeedSuppliers(
+            controls::driveForward,
+            controls::driveLeft)
+        .withAngularSpeedSupplier(controls::driveRotate)
+        .withSpeedConstraints(Units.feetToMeters(9), Units.degreesToRadians(360))
+        .usePercentSpeeds(true)
+        .useFieldRelative(false)
         .build();
   }
 

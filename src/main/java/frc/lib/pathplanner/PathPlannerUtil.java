@@ -53,7 +53,7 @@ public class PathPlannerUtil {
     var arr = kTargetPoseSub.get();
     double x = arr[0];
     double y = arr[1];
-    Rotation2d rot = Rotation2d.fromDegrees(arr[2]);
+    Rotation2d rot = Rotation2d.fromRadians(arr[2]);
 
     return new Pose2d(x, y, rot);
   }

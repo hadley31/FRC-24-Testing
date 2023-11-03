@@ -11,7 +11,7 @@ import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import frc.robot.utils.CollectionUtil;
+import frc.lib.utils.CollectionUtil;
 
 public class Swerve extends SwerveDrivetrain {
 

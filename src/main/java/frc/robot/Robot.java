@@ -22,10 +22,12 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.DriveCommands;
 import frc.robot.oi.DriverControls;
 import frc.robot.oi.SingleUserXboxControls;
+import frc.robot.subsystems.Arm.Arm;
 import frc.robot.subsystems.drive.Drive;
 
 public class Robot extends TimedRobot {
   private Drive m_drive;
+  private Arm m_arm;
 
   private DriverControls m_driverControls;
 
@@ -121,6 +123,7 @@ public class Robot extends TimedRobot {
 
   private void configureSimSubsystems() {
     m_drive = new Drive(CTRESwerveConfig.getConfiguredSwerveDrivetrain());
+    m_arm = new Arm(20, 21);
   }
 
   private void configureBindings() {
@@ -135,12 +138,16 @@ public class Robot extends TimedRobot {
         m_drive::drive,
         m_drive);
 
-    m_drive.setDefaultCommand(DriveCommands.fieldRelative(config, m_driverControls));
+    var fieldRelativeCommand = DriveCommands.fieldRelative(config, m_driverControls);
+    var robotRelativeCommand = DriveCommands.robotRelative(config, m_driverControls);
 
-    m_driverControls.robotRelativeDrive()
-        .whileTrue(DriveCommands.faceAngle(config, m_driverControls, Rotation2d.fromDegrees(90)));
+    m_drive.setDefaultCommand(fieldRelativeCommand);
+
+    m_driverControls.robotRelativeDrive().whileTrue(robotRelativeCommand);
 
     m_driverControls.seedFieldRelative().onTrue(m_drive.seedFieldRelativeCommand());
+
+    m_arm.setTargetAngleCommand(Rotation2d.fromDegrees(20));
   }
 
   private void configureAutos() {

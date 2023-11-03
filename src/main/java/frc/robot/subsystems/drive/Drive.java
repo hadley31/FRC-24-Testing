@@ -21,7 +21,7 @@ import frc.lib.swerve.Swerve;
 import frc.lib.utils.FieldUtil;
 import frc.robot.Constants.DriveConstants;
 
-public class Drive extends SubsystemBase {
+public class Drive extends SubsystemBase implements AutoCloseable {
 
   private Swerve m_swerve;
 
@@ -131,5 +131,15 @@ public class Drive extends SubsystemBase {
 
   public Command seedFieldRelativeCommand() {
     return Commands.runOnce(this::seedFieldRelative);
+  }
+
+  @Override
+  public void close() {
+    m_currentPosePub.close();
+    m_currentStatesPub.close();
+    m_currentAbsoluteStatesPub.close();
+    m_desiredPathPosePub.close();
+    m_desiredSpeedsPub.close();
+    m_desiredStatesPub.close();
   }
 }
