@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import org.photonvision.PhotonCamera;
-import org.photonvision.simulation.PhotonCameraSim;
 import org.photonvision.simulation.VisionSystemSim;
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
@@ -131,17 +130,17 @@ public class Robot extends TimedRobot {
   public void testExit() {
   }
 
-  @Override
-  public void simulationInit() {
-    m_visionSim = new VisionSystemSim("Vision Sim");
-    m_visionSim.addAprilTags(m_aprilTagLayout);
-    m_cameras.values().forEach(c -> m_visionSim.addCamera(new PhotonCameraSim(c.getCamera()), c.getRobotToCamera()));
-  }
+  // @Override
+  // public void simulationInit() {
+  //   m_visionSim = new VisionSystemSim("Vision Sim");
+  //   m_visionSim.addAprilTags(m_aprilTagLayout);
+  //   m_cameras.values().forEach(c -> m_visionSim.addCamera(new PhotonCameraSim(c.getCamera()), c.getRobotToCamera()));
+  // }
 
-  @Override
-  public void simulationPeriodic() {
-    m_visionSim.update(m_drive.getPose3d());
-  }
+  // @Override
+  // public void simulationPeriodic() {
+  //   m_visionSim.update(m_drive.getPose3d());
+  // }
 
   private void configureSubsystems() {
     m_aprilTagLayout = getAprilTagLayout();
