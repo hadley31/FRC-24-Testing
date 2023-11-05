@@ -162,16 +162,16 @@ public class Robot extends TimedRobot {
     m_arm = new Arm(20, 21);
 
     var camera1 = new PhotonCamera(VisionConstants.camera1Name);
-    var camera2 = new PhotonCamera(VisionConstants.camera2Name);
+    // var camera2 = new PhotonCamera(VisionConstants.camera2Name);
 
     var cameraSub1 = new AprilTagCamera(camera1, VisionConstants.robotToCamera1, m_aprilTagLayout, m_state);
-    var cameraSub2 = new AprilTagCamera(camera2, VisionConstants.robotToCamera2, m_aprilTagLayout, m_state);
+    // var cameraSub2 = new AprilTagCamera(camera2, VisionConstants.robotToCamera2, m_aprilTagLayout, m_state);
 
-    m_cameras = Map.of(
-        camera1.getName(), cameraSub1,
-        camera2.getName(), cameraSub2);
+    // m_cameras = Map.of(
+    //     camera1.getName(), cameraSub1,
+    //     camera2.getName(), cameraSub2);
 
-    // m_cameras = Map.of(camera1.getName(), cameraSub1);
+    m_cameras = Map.of(camera1.getName(), cameraSub1);
 
     m_cameras.values().forEach(c -> c.setPoseListener(poseResult -> {
       m_drive.getSwerve().addVisionMeasurement(

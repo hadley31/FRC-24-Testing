@@ -22,7 +22,7 @@ public abstract class PhotonSubsystem extends SubsystemBase implements NetworkTa
   private Transform3d m_robotToCamera;
   private PhotonPipelineResult m_latestResult;
   private final StructEntry<Pose3d> m_realPoseEntry = NetworkTableInstance.getDefault()
-      .getStructTopic("Test", Pose3d.struct).getEntry(new Pose3d());
+      .getStructTopic("/Test/Entry", Pose3d.struct).getEntry(new Pose3d());
   // private final DoubleArrayPublisher m_realPoseEntry;
 
   public PhotonSubsystem(PhotonCamera camera, Transform3d robotToCamera, RobotState state) {
@@ -42,9 +42,10 @@ public abstract class PhotonSubsystem extends SubsystemBase implements NetworkTa
       periodic(result);
     }
 
-    if (m_state.getRobotPose3d() != null) {
+    var robotPose = m_state.getRobotPose3d();
+    if (robotPose != null) {
       // m_realPoseEntry.accept(DataLogUtil.pose3d(getCameraPose3d(m_state.getRobotPose3d())));
-      m_realPoseEntry.accept(getCameraPose3d(m_state.getRobotPose3d()));
+      m_realPoseEntry.accept(getCameraPose3d(robotPose));
     }
   }
 
