@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "eamodio.gitlens",
+    "vscjava.vscode-java-pack",
+    "vscode-icons-team.vscode-icons",
+    "visualstudioexptteam.vscodeintellicode-completions",
+    "visualstudioexptteam.vscodeintellicode"
+  ]
+}

@@ -104,16 +104,16 @@ public class Arm extends SubsystemBase implements NetworkTablePath {
 
     m_follower.setControl(new Follower(leaderPort, false));
 
-    addSubListener(m_ks, updateGains(ks -> m_gains.kS = ks));
-    addSubListener(m_kg, updateGains(kg -> m_gains.kG = kg));
-    addSubListener(m_kv, updateGains(kv -> m_gains.kV = kv));
-    addSubListener(m_ka, updateGains(ka -> m_gains.kA = ka));
+    addDoubleSubListener(m_ks, updateGains(ks -> m_gains.kS = ks));
+    addDoubleSubListener(m_kg, updateGains(kg -> m_gains.kG = kg));
+    addDoubleSubListener(m_kv, updateGains(kv -> m_gains.kV = kv));
+    addDoubleSubListener(m_ka, updateGains(ka -> m_gains.kA = ka));
 
-    addSubListener(m_kp, updateGains(kp -> m_gains.kP = kp));
-    addSubListener(m_ki, updateGains(ki -> m_gains.kI = ki));
-    addSubListener(m_kd, updateGains(kd -> m_gains.kD = kd));
+    addDoubleSubListener(m_kp, updateGains(kp -> m_gains.kP = kp));
+    addDoubleSubListener(m_ki, updateGains(ki -> m_gains.kI = ki));
+    addDoubleSubListener(m_kd, updateGains(kd -> m_gains.kD = kd));
 
-    addSubListener(m_targetAngleEntry, degrees -> m_targetAngle = Rotation2d.fromDegrees(degrees));
+    addDoubleSubListener(m_targetAngleEntry, degrees -> m_targetAngle = Rotation2d.fromDegrees(degrees));
 
     m_targetAngleEntry.accept(20);
 

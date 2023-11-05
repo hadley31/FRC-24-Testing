@@ -2,7 +2,10 @@ package frc.robot;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
 
@@ -63,5 +66,26 @@ public class Constants {
     public static final double kFieldWidthMeters = Units.feetToMeters(26.2916);
     public static final Pose2d kOppositeField = new Pose2d(kFieldLengthMeters, kFieldWidthMeters,
         Rotation2d.fromDegrees(180));
+  }
+
+  public static final class VisionConstants {
+    public static final String camera1Name = "camera1";
+    public static final Transform3d robotToCamera1 = new Transform3d(
+        new Translation3d(
+            Units.inchesToMeters(10),
+            Units.inchesToMeters(0),
+            Units.inchesToMeters(10)),
+        new Rotation3d());
+
+    public static final String camera2Name = "camera2";
+    public static final Transform3d robotToCamera2 = new Transform3d(
+        new Translation3d(
+            Units.inchesToMeters(-10),
+            Units.inchesToMeters(0),
+            Units.inchesToMeters(10)),
+        new Rotation3d(
+            Units.degreesToRadians(0),
+            Units.degreesToRadians(0),
+            Units.degreesToRadians(180)));
   }
 }

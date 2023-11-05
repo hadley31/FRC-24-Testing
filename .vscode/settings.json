@@ -42,4 +42,7 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": true
   },
+  "git.autofetch": "all",
+  "git.fetchOnPull": false,
+  "files.autoSave": "onFocusChange",
 }

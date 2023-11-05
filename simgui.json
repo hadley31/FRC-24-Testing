@@ -18,7 +18,8 @@
       "/FMSInfo": "FMSInfo",
       "/SmartDashboard/Arm Mechanism": "Mechanism2d",
       "/SmartDashboard/Auto Chooser": "String Chooser",
-      "/SmartDashboard/Field": "Field2d"
+      "/SmartDashboard/Field": "Field2d",
+      "/SmartDashboard/VisionSystemSim-Vision Sim/Sim Field": "Field2d"
     },
     "windows": {
       "/SmartDashboard/Arm Mechanism": {
@@ -69,6 +70,27 @@
           "open": true
         },
         "PID": {
+          "open": true
+        },
+        "open": true
+      },
+      "Cam": {
+        "double[]##v_Cam/Test": {
+          "open": true
+        },
+        "open": true
+      },
+      "Cameras": {
+        "camera1": {
+          "double[]##v_Cameras/camera1/Real Pose": {
+            "open": true
+          },
+          "double[]##v_Cameras/camera1/RealPose": {
+            "open": true
+          },
+          "open": true
+        },
+        "camera2": {
           "open": true
         },
         "open": true

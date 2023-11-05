@@ -2,7 +2,6 @@ package frc.robot.subsystems.drive;
 
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest.FieldCentric;
-import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest.FieldCentricFacingAngle;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest.RobotCentric;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest.SwerveDriveBrake;
 
@@ -19,11 +18,14 @@ import frc.lib.advantagekit.DataLogUtil;
 import frc.lib.pathplanner.PathPlannerUtil;
 import frc.lib.swerve.Swerve;
 import frc.lib.utils.FieldUtil;
+import frc.lib.utils.NetworkTablePath;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.RobotState;
 
-public class Drive extends SubsystemBase implements AutoCloseable {
+public class Drive extends SubsystemBase implements NetworkTablePath, AutoCloseable {
 
-  private Swerve m_swerve;
+  private final RobotState m_state;
+  private final Swerve m_swerve;
 
   DoubleArrayPublisher m_currentPosePub = NetworkTableInstance.getDefault().getDoubleArrayTopic("/Drive/CurrentPose")
       .publish();
@@ -40,10 +42,10 @@ public class Drive extends SubsystemBase implements AutoCloseable {
 
   private final SwerveRequest.RobotCentric m_robotCentricRequest = new RobotCentric();
   private final SwerveRequest.FieldCentric m_fieldCentricRequest = new FieldCentric();
-  private final SwerveRequest.FieldCentricFacingAngle m_faceAngleRequest = new FieldCentricFacingAngle();
   private final SwerveRequest.SwerveDriveBrake m_brakeRequest = new SwerveDriveBrake();
 
-  public Drive(Swerve swerve) {
+  public Drive(RobotState state, Swerve swerve) {
+    m_state = state;
     m_swerve = swerve;
   }
 
@@ -53,6 +55,7 @@ public class Drive extends SubsystemBase implements AutoCloseable {
 
     m_currentPosePub.accept(DataLogUtil.pose2d(getPose()));
     m_desiredPathPosePub.accept(DataLogUtil.pose2d(targetPose));
+    m_state.updateRobotPose(getPose());
 
     FieldUtil.getDefaultField().setSwerveRobotPose(getPose(), getModuleStates(),
         DriveConstants.kSwerveModuleTranslations);
@@ -141,5 +144,14 @@ public class Drive extends SubsystemBase implements AutoCloseable {
     m_desiredPathPosePub.close();
     m_desiredSpeedsPub.close();
     m_desiredStatesPub.close();
+  }
+
+  public Swerve getSwerve() {
+    return m_swerve;
+  }
+
+  @Override
+  public String getPathRoot() {
+    return "Drive";
   }
 }
